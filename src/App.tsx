@@ -1,34 +1,54 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import {
+  BrandVariants,
+  Button,
+  createDarkTheme,
+  createLightTheme,
+  FluentProvider,
+  Theme,
+} from '@fluentui/react-components';
+
+const myNewTheme: BrandVariants = {
+  10: '#050202',
+  20: '#231212',
+  30: '#3B1B1C',
+  40: '#502224',
+  50: '#65292C',
+  60: '#7B3034',
+  70: '#92363C',
+  80: '#AA3D45',
+  90: '#C2444E',
+  100: '#DA4A57',
+  110: '#F05462',
+  120: '#F66F75',
+  130: '#FB8688',
+  140: '#FE9D9D',
+  150: '#FFB4B2',
+  160: '#FFC9C8',
+};
+
+const myTheme = {
+  fontFamilyBase: 'Nunito Sans, sans-serif',
+};
+
+const lightTheme: Theme = {
+  ...createLightTheme(myNewTheme),
+  ...myTheme,
+};
+
+// @ts-ignore
+const darkTheme: Theme = {
+  ...createDarkTheme(myNewTheme),
+  ...myTheme,
+};
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <FluentProvider theme={lightTheme}>
+      <Button appearance="primary" size="large">
+        Get started
+      </Button>
+      <h1>Hello</h1>
+    </FluentProvider>
   );
 }
 
