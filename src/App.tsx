@@ -1,11 +1,12 @@
 import {
   BrandVariants,
-  Button,
   createDarkTheme,
   createLightTheme,
   FluentProvider,
   Theme,
 } from '@fluentui/react-components';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes';
 
 const myNewTheme: BrandVariants = {
   10: '#050202',
@@ -35,7 +36,7 @@ const lightTheme: Theme = {
   ...myTheme,
 };
 
-// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const darkTheme: Theme = {
   ...createDarkTheme(myNewTheme),
   ...myTheme,
@@ -44,10 +45,7 @@ const darkTheme: Theme = {
 function App() {
   return (
     <FluentProvider theme={lightTheme}>
-      <Button appearance="primary" size="large">
-        Get started
-      </Button>
-      <h1>Hello</h1>
+      <RouterProvider router={router} />
     </FluentProvider>
   );
 }
