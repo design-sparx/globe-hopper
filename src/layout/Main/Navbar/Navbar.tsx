@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import {
   BellDotIcon,
+  CarIcon,
   ChevronDownIcon,
   Contact2Icon,
   DollarSignIcon,
   HotelIcon,
-  NavigationIcon,
   PlaneIcon,
   StoreIcon,
 } from 'lucide-react';
@@ -24,19 +24,19 @@ import { useStyles } from './Navbar.styles.ts';
 
 const LINKS = [
   {
-    title: 'Tour',
-    link: 'tour',
-    icon: <NavigationIcon />,
-  },
-  {
-    title: 'Flights',
+    title: 'flights',
     link: 'flight',
     icon: <PlaneIcon />,
   },
   {
-    title: 'Hotel',
-    link: 'hotel',
+    title: 'stays',
+    link: 'stays',
     icon: <HotelIcon />,
+  },
+  {
+    title: 'car rental',
+    link: 'car-rentals',
+    icon: <CarIcon />,
   },
 ];
 
