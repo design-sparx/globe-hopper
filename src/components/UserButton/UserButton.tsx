@@ -29,6 +29,7 @@ export const UserButton = ({ withText, ...others }: UserButtonProps) => {
     <Menu {...others}>
       <MenuTrigger disableButtonEnhancement>
         <Button
+          appearance="transparent"
           icon={
             <Image
               alt="user avatar"
