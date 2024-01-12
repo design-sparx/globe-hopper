@@ -1,7 +1,7 @@
-import { useStyles } from './Navbar.styles.ts';
 import { Link } from 'react-router-dom';
 import {
   BellDotIcon,
+  ChevronDownIcon,
   Contact2Icon,
   DollarSignIcon,
   HotelIcon,
@@ -9,23 +9,32 @@ import {
   PlaneIcon,
   StoreIcon,
 } from 'lucide-react';
-import { Button, Link as FluentLink } from '@fluentui/react-components';
+import {
+  Button,
+  Menu,
+  MenuItem,
+  MenuList,
+  MenuPopover,
+  MenuTrigger,
+} from '@fluentui/react-components';
+import { Container } from 'react-grid-system';
 import { UserButton } from '../../../components/UserButton';
 import { Logo } from '../../../components/Logo';
+import { useStyles } from './Navbar.styles.ts';
 
 const LINKS = [
   {
-    title: 'tour',
+    title: 'Tour',
     link: 'tour',
     icon: <NavigationIcon />,
   },
   {
-    title: 'flights',
+    title: 'Flights',
     link: 'flight',
     icon: <PlaneIcon />,
   },
   {
-    title: 'hotel',
+    title: 'Hotel',
     link: 'hotel',
     icon: <HotelIcon />,
   },
@@ -54,31 +63,49 @@ export const Navbar = () => {
 
   const links = LINKS.map((link) => (
     <Link to={link.link} key={link.title}>
-      <FluentLink as="span" appearance="subtle" className={classes.link}>
-        {link.icon}
-        {link.title}
-      </FluentLink>
+      <MenuItem icon={link.icon}>{link.title}</MenuItem>
     </Link>
   ));
 
   const otherLinks = OTHER_LINKS.map((link) => (
-    <Link to={link.link} key={link.link}>
-      <FluentLink as="span" appearance="subtle" className={classes.link}>
-        {link.icon}
+    <Link to={link.link} key={link.title}>
+      <Button
+        appearance="transparent"
+        icon={link.icon}
+        className={classes.link}
+      >
         {link.title}
-      </FluentLink>
+      </Button>
     </Link>
   ));
 
   return (
     <div className={classes.root}>
-      <Logo />
-      <div className={classes.links}>{links}</div>
-      <div className={classes.links}>
-        {otherLinks}
-        <Button icon={<BellDotIcon />} />
-        <UserButton />
-      </div>
+      <Container className={classes.container}>
+        <div className={classes.brand}>
+          <Logo />
+          <Menu>
+            <MenuTrigger disableButtonEnhancement>
+              <Button
+                icon={<ChevronDownIcon />}
+                iconPosition="after"
+                appearance="transparent"
+              >
+                More travel
+              </Button>
+            </MenuTrigger>
+
+            <MenuPopover>
+              <MenuList>{links}</MenuList>
+            </MenuPopover>
+          </Menu>
+        </div>
+        <div className={classes.links}>
+          {otherLinks}
+          <Button appearance="transparent" icon={<BellDotIcon />} />
+          <UserButton />
+        </div>
+      </Container>
     </div>
   );
 };
