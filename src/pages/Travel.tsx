@@ -1,7 +1,10 @@
+import { Container } from 'react-grid-system';
+import { HeroSection } from '../sections/Landing';
+
 export const TravelPage = () => {
   return (
-    <div>
-      <h1>travel</h1>
-    </div>
+    <Container>
+      <HeroSection />
+    </Container>
   );
 };
