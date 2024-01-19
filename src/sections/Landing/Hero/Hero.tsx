@@ -1,12 +1,15 @@
 import { useStyles } from './Hero.styles.ts';
 import { Body2, Display, Tag, TagGroup } from '@fluentui/react-components';
 import { Flex } from '../../../components/Flex';
+import { ComponentProps } from 'react';
 
-export const HeroSection = () => {
+type HeroSectionProps = ComponentProps<'div'>;
+
+export const HeroSection = ({ ...others }: HeroSectionProps) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} {...others}>
       <Flex
         direction="column"
         align="center"
