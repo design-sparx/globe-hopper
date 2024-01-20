@@ -1,12 +1,20 @@
 import { Container } from 'react-grid-system';
-import { HeroSection, SearchSection } from '../sections/Landing';
+import {
+  HeroSection,
+  PackagesSection,
+  PopularSearchesSection,
+  SearchSection,
+} from '../sections/Landing';
+import { SubscribeSection } from '../sections/Shared/Subscribe';
 
 export const TravelPage = () => {
   return (
     <Container>
       <HeroSection />
       <SearchSection />
-      our popular packages our popular searches
+      <PackagesSection />
+      <PopularSearchesSection />
+      <SubscribeSection />
     </Container>
   );
 };
