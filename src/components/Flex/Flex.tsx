@@ -25,6 +25,7 @@ export const Flex = (props: FlexProps) => {
         alignItems: align,
         gap,
       }}
+      {...others}
     >
       {others.children}
     </div>
