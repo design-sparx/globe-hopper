@@ -5,6 +5,7 @@ import {
   Button,
   Field,
   Input,
+  InputProps,
   Popover,
   PopoverProps,
   PopoverSurface,
@@ -12,14 +13,12 @@ import {
   Select,
   SelectProps,
   SpinButton,
-  SpinButtonProps,
   Tooltip,
 } from '@fluentui/react-components';
 import {
   ChangeEvent,
   ComponentProps,
   FormEvent,
-  useCallback,
   useEffect,
   useState,
 } from 'react';
@@ -29,6 +28,7 @@ import {
   PlaneIcon,
   PlusIcon,
   SearchIcon,
+  Users2Icon,
 } from 'lucide-react';
 
 type SelectTravellersFormProps = {
@@ -84,7 +84,7 @@ export const FlightSearchForm = ({ ...others }: FlightSearchFormProps) => {
   const [flightFormFields, setFlightFormFields] = useState([
     { from: '', to: '', startDate: new Date(), endDate: new Date() },
   ]);
-  const [travellersCount, setTravellersCount] = useState<number | null>(10);
+  const [travellersCount, setTravellersCount] = useState<number | null>(1);
   const [travellersPopoverOpen, setTravellersPopoverOpen] = useState(false);
 
   const onFlightTypeChange: SelectProps['onChange'] = (_event, data) => {
@@ -132,23 +132,13 @@ export const FlightSearchForm = ({ ...others }: FlightSearchFormProps) => {
     console.log(flightFormFields);
   };
 
-  //
-  const onTravellersCountChange: SpinButtonProps['onChange'] = useCallback(
-    (_ev: any, data: any) => {
-      console.log('onSpinButtonChange', data.value, data.displayValue);
-      if (data.value !== undefined) {
-        setTravellersCount(data.value);
-      } else if (data.displayValue !== undefined) {
-        const newValue = parseFloat(data.displayValue);
-        if (!Number.isNaN(newValue)) {
-          setTravellersCount(newValue);
-        } else {
-          console.error(`Cannot parse "${data.displayValue}" as a number.`);
-        }
-      }
-    },
-    [setTravellersCount]
-  );
+  const onTravellersCountChange: InputProps['onChange'] = (_ev, data: any) => {
+    // The controlled input pattern can be used for other purposes besides validation,
+    // but validation is a useful example
+    if (data.value.length <= 20) {
+      setTravellersCount(data.value);
+    }
+  };
 
   const onTravellersPopoverChange: PopoverProps['onOpenChange'] = (_e, data) =>
     setTravellersPopoverOpen(data.open || false);
@@ -170,12 +160,16 @@ export const FlightSearchForm = ({ ...others }: FlightSearchFormProps) => {
     <>
       <Flex direction="column" className={classes.root} {...others}>
         <Flex>
-          <Select onChange={onFlightTypeChange} value={flightType}>
+          <Select onChange={onFlightTypeChange} value={flightType} size="large">
             <option>one-way</option>
             <option>round-trip</option>
             <option>multi-city</option>
           </Select>
-          <Select onChange={onFlightClassChange} value={flightClass}>
+          <Select
+            onChange={onFlightClassChange}
+            value={flightClass}
+            size="large"
+          >
             <option>economy</option>
             <option>premium economy</option>
             <option>business</option>
@@ -187,8 +181,11 @@ export const FlightSearchForm = ({ ...others }: FlightSearchFormProps) => {
             onOpenChange={onTravellersPopoverChange}
           >
             <PopoverTrigger disableButtonEnhancement>
-              <SpinButton
-                value={travellersCount}
+              <Input
+                contentBefore={<Users2Icon aria-label="Travellers icon" />}
+                type="number"
+                value={`${travellersCount?.toString()} travellers`}
+                size="large"
                 onChange={onTravellersCountChange}
               />
             </PopoverTrigger>
@@ -201,29 +198,29 @@ export const FlightSearchForm = ({ ...others }: FlightSearchFormProps) => {
         </Flex>
         <form onSubmit={submit}>
           {flightFormFields.map((input, index) => (
-            <Flex direction="column">
+            <Flex direction="column" key={`flight-form-${index}`}>
               {flightType === 'multi-city' && (
-                <Body1Strong>Flight {++index}</Body1Strong>
+                <Body1Strong>Flight {index + 1}</Body1Strong>
               )}
-              <Flex key={`flight-form-${index}`} className={classes.row}>
+              <Flex className={classes.row}>
                 <Field aria-label="from">
                   <Input
                     contentBefore={<PlaneIcon aria-label="Flight icon" />}
                     placeholder="Leaving from?"
-                    size="medium"
+                    size="large"
                     value={input.from}
                     name="from"
                     onChange={(event) => handleFlightFormChange(index, event)}
                   />
                 </Field>
                 <Tooltip content="Switch destinations" relationship="label">
-                  <Button icon={<ArrowLeftRightIcon />} size="medium" />
+                  <Button icon={<ArrowLeftRightIcon />} size="large" />
                 </Tooltip>
                 <Field aria-label="to">
                   <Input
                     contentBefore={<PlaneIcon aria-label="Flight icon" />}
                     placeholder="Going to?"
-                    size="medium"
+                    size="large"
                     value={input.to}
                     name="to"
                     onChange={(event) => handleFlightFormChange(index, event)}
@@ -233,7 +230,7 @@ export const FlightSearchForm = ({ ...others }: FlightSearchFormProps) => {
                   <DatePicker
                     allowTextInput
                     placeholder="Select date..."
-                    size="medium"
+                    size="large"
                     name="startDate"
                     value={input.startDate}
                   />
@@ -243,17 +240,19 @@ export const FlightSearchForm = ({ ...others }: FlightSearchFormProps) => {
                     <DatePicker
                       allowTextInput
                       placeholder="Select date..."
-                      size="medium"
+                      size="large"
                       name="endDate"
                       value={input.endDate}
                     />
                   </Field>
                 )}
                 {flightType === 'multi-city' && (
-                  <Button onClick={() => removeFields(index)}>Remove</Button>
+                  <Button onClick={() => removeFields(index)} size="large">
+                    Remove
+                  </Button>
                 )}
                 {flightType !== 'multi-city' && (
-                  <Button onClick={submit} icon={<SearchIcon />}>
+                  <Button onClick={submit} icon={<SearchIcon />} size="large">
                     Search
                   </Button>
                 )}
@@ -263,10 +262,10 @@ export const FlightSearchForm = ({ ...others }: FlightSearchFormProps) => {
         </form>
         {flightType === 'multi-city' && (
           <>
-            <Button onClick={addFields} icon={<PlusIcon />}>
+            <Button onClick={addFields} icon={<PlusIcon />} size="large">
               Add another flight
             </Button>
-            <Button onClick={submit} icon={<SearchIcon />}>
+            <Button onClick={submit} icon={<SearchIcon />} size="large">
               Search
             </Button>
           </>
