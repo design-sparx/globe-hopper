@@ -5,6 +5,7 @@ export type FlexProps = {
   align?: CSSProperties['alignItems'];
   justify?: CSSProperties['justifyContent'];
   gap?: CSSProperties['gap'];
+  wrap?: CSSProperties['flexWrap'];
 } & ComponentProps<'div'>;
 
 export const Flex = (props: FlexProps) => {
@@ -13,6 +14,7 @@ export const Flex = (props: FlexProps) => {
     gap = '8px',
     justify = 'flex-start',
     align = 'flex-start',
+    wrap = 'wrap',
     ...others
   } = props;
 
@@ -23,9 +25,10 @@ export const Flex = (props: FlexProps) => {
         flexDirection: direction,
         justifyContent: justify,
         alignItems: align,
+        flexWrap: wrap,
         gap,
+        ...others.style,
       }}
-      {...others}
     >
       {others.children}
     </div>

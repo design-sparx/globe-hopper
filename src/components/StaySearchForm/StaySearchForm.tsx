@@ -91,11 +91,11 @@ export const StaySearchForm = () => {
   };
 
   return (
-    <Flex>
+    <Flex className={classes.root}>
       <form onSubmit={submit}>
-        <Flex direction="column">
+        <Flex direction="column" style={{ width: '100%' }}>
           <Flex className={classes.row}>
-            <Field aria-label="going to">
+            <Field aria-label="going to" className={classes.field}>
               <Input
                 contentBefore={<MapPin aria-label="Flight icon" />}
                 placeholder="Going to?"
@@ -105,7 +105,7 @@ export const StaySearchForm = () => {
                 onChange={(event) => handleFormChange(event)}
               />
             </Field>
-            <Field aria-label="check in">
+            <Field aria-label="check in" className={classes.field}>
               <DatePicker
                 allowTextInput
                 placeholder="Check in..."
@@ -115,7 +115,7 @@ export const StaySearchForm = () => {
                 onChange={(event) => handleFormChange(event)}
               />
             </Field>
-            <Field aria-label="check out">
+            <Field aria-label="check out" className={classes.field}>
               <DatePicker
                 allowTextInput
                 placeholder="Check out..."
@@ -136,6 +136,7 @@ export const StaySearchForm = () => {
                   value={`${guestsCount?.toString()} guests, 1 room`}
                   size="large"
                   onChange={onGuestsCountChange}
+                  className={classes.field}
                 />
               </PopoverTrigger>
               <PopoverSurface tabIndex={-1}>

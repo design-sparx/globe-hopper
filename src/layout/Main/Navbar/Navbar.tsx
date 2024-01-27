@@ -18,19 +18,19 @@ import {
   MenuTrigger,
 } from '@fluentui/react-components';
 import { Container } from 'react-grid-system';
-import { UserButton } from '../../../components/UserButton';
-import { Logo } from '../../../components/Logo';
+import { UserButton, Logo } from '@/components';
+import { PATH_FLIGHTS, PATH_STAYS } from '@/constants';
 import { useStyles } from './Navbar.styles.ts';
 
 const LINKS = [
   {
     title: 'flights',
-    link: 'flight',
+    link: PATH_FLIGHTS.root,
     icon: <PlaneIcon />,
   },
   {
     title: 'stays',
-    link: 'stays',
+    link: PATH_STAYS.root,
     icon: <HotelIcon />,
   },
   {

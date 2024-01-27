@@ -7,5 +7,7 @@ export * from './FlightSearchForm';
 export * from './Logo';
 export * from './PackageCard';
 export * from './ProcessCard';
+export * from './StaysCard';
 export * from './StaySearchForm';
+export * from './UsersAvatarGroup';
 export * from './UserButton';
