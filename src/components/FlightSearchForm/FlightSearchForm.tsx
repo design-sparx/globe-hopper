@@ -184,7 +184,7 @@ export const FlightSearchForm = ({ ...others }: FlightSearchFormProps) => {
               <Input
                 contentBefore={<Users2Icon aria-label="Travellers icon" />}
                 type="number"
-                value={`${travellersCount?.toString()} travellers`}
+                value={`${travellersCount?.toString()}`}
                 size="large"
                 onChange={onTravellersCountChange}
               />
@@ -198,9 +198,11 @@ export const FlightSearchForm = ({ ...others }: FlightSearchFormProps) => {
         </Flex>
         <form onSubmit={submit}>
           {flightFormFields.map((input, index) => (
-            <Flex direction="column" key={`flight-form-${index}`}>
+            <Flex direction="column" gap={0} key={`flight-form-${index}`}>
               {flightType === 'multi-city' && (
-                <Body1Strong>Flight {index + 1}</Body1Strong>
+                <Body1Strong className={classes.label}>
+                  Flight {index + 1}
+                </Body1Strong>
               )}
               <Flex className={classes.row}>
                 <Field aria-label="from">
@@ -228,7 +230,6 @@ export const FlightSearchForm = ({ ...others }: FlightSearchFormProps) => {
                 </Field>
                 <Field aria-label="start date">
                   <DatePicker
-                    allowTextInput
                     placeholder="Select date..."
                     size="large"
                     name="startDate"
@@ -238,7 +239,6 @@ export const FlightSearchForm = ({ ...others }: FlightSearchFormProps) => {
                 {flightType === 'round-trip' && (
                   <Field aria-label="end date">
                     <DatePicker
-                      allowTextInput
                       placeholder="Select date..."
                       size="large"
                       name="endDate"

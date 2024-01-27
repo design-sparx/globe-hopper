@@ -1,5 +1,5 @@
 import { makeStyles, shorthands } from '@fluentui/react-components';
-import LandingHeroImage from '../../../assets/img/landing-hero.jpg';
+import LandingHeroImage from '../../../assets/hero/landing.jpg';
 
 export const useStyles = makeStyles({
   root: {
