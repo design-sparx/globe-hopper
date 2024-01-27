@@ -1,45 +1,74 @@
 import {
-  BadgePercent,
-  BellDotIcon,
-  Settings2Icon,
-  TagsIcon,
+  CalendarClockIcon,
+  FastForwardIcon,
+  ShieldCheckIcon,
+  UtensilsIcon,
 } from 'lucide-react';
 import { Col, Row } from 'react-grid-system';
 import { FeatureCard } from 'components/FeatureCard';
+import { CardPreview, Text, Title3 } from '@fluentui/react-components';
+import { Flex, UsersAvatarGroup } from '@/components';
+import { RatingDisplay } from '@fluentui/react-rating-preview';
 
 const FEATURES = [
   {
-    icon: <BadgePercent />,
-    title: 'Save 20% or more',
-    description: 'Compare multiple travel sites with one search.',
-  },
-  {
-    icon: <BellDotIcon />,
-    title: 'Track prices',
+    icon: <UtensilsIcon />,
+    title: 'Quality Food',
     description:
-      'Not ready to book? Create a price alert for when prices drop.',
+      'Departure defective arranging rapturous did. Conduct denied adding worthy little.',
   },
   {
-    icon: <Settings2Icon />,
-    title: 'Filter your deals',
-    description: 'Choose cabin class, free Wi-Fi and more.',
+    icon: <FastForwardIcon />,
+    title: 'Quick Services',
+    description: 'Supposing so be resolving breakfast am or perfectly.',
   },
   {
-    icon: <TagsIcon />,
-    title: 'Bundle and save',
-    description: 'Save money when you bundle your flight + hotel.',
+    icon: <ShieldCheckIcon />,
+    title: 'High Security',
+    description: 'Arranging rapturous did believe him all had supported.',
+  },
+  {
+    icon: <CalendarClockIcon />,
+    title: '24 Hours Alert',
+    description: 'Rapturous did believe him all had supported.',
   },
 ];
+
 export const FeaturesSection = () => {
   const features = FEATURES.map((feature) => (
-    <Col key={feature.title} lg={3}>
+    <Col key={feature.title} lg={6}>
       <FeatureCard data={feature} />
     </Col>
   ));
 
   return (
     <div>
-      <Row>{features}</Row>
+      <Row>
+        <Col lg={4}>
+          <CardPreview>
+            <img
+              src="https://images.unsplash.com/photo-1596701062351-8c2c14d1fdd0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aG90ZWx8ZW58MHwxfDB8fHwy"
+              alt=""
+            />
+          </CardPreview>
+          <Flex
+            wrap="nowrap"
+            align="center"
+            style={{ backgroundColor: 'white' }}
+          >
+            <UsersAvatarGroup />
+            <RatingDisplay value={4.3} color="marigold" size="medium" />
+          </Flex>
+        </Col>
+        <Col lg={8}>
+          <Title3>The Best Holidays Start Here!</Title3>
+          <Text>
+            Book your hotel with us and don't forget to grab an awesome hotel
+            deal to save massive on your stay.
+          </Text>
+          <Row>{features}</Row>
+        </Col>
+      </Row>
     </div>
   );
 };
