@@ -1,11 +1,10 @@
+import { Button, Title2 } from '@fluentui/react-components';
 import { Col, Row } from 'react-grid-system';
 import TurkeyImg from '../../../assets/packages/turkey.jpg';
 import SpainImg from '../../../assets/packages/spain.jpg';
 import ItalyImg from '../../../assets/packages/italy.jpg';
 import ThailandImg from '../../../assets/packages/thailand.jpg';
-import { PackageCard } from '../../../components/PackageCard';
-import { Button, Title2 } from '@fluentui/react-components';
-import { Flex } from '../../../components/Flex';
+import { PackageCard, Flex } from '@/components';
 
 const PACKAGES = [
   {

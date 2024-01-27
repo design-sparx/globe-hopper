@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { ErrorPage, TravelPage } from '../pages';
+import { ErrorPage, FlightBookingPage, TravelPage } from '../pages';
 import { MainLayout } from '../layout';
 
 export const router = createBrowserRouter([
@@ -13,5 +13,11 @@ export const router = createBrowserRouter([
         element: <TravelPage />,
       },
     ],
+  },
+  {
+    path: 'flight',
+    element: <MainLayout />,
+    errorElement: <ErrorPage />,
+    children: [{ path: '', element: <FlightBookingPage /> }],
   },
 ]);

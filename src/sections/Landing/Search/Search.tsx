@@ -9,7 +9,7 @@ import {
 } from '@fluentui/react-components';
 import { CarIcon, HotelIcon, PlaneIcon } from 'lucide-react';
 import { FlightSearchForm } from '../../../components/FlightSearchForm';
-import { HotelSearchForm } from '../../../components/HotelSearchForm';
+import { StaySearchForm } from '../../../components/StaySearchForm';
 import { CarRentalSearchForm } from '../../../components/CarRentalSearchForm';
 
 type SearchSectionProps = ComponentProps<'div'>;
@@ -32,7 +32,7 @@ export const SearchSection = ({ ...others }: SearchSectionProps) => {
 
   const Stays = memo(() => (
     <div role="tabpanel" aria-labelledby="Stays">
-      <HotelSearchForm />
+      <StaySearchForm />
     </div>
   ));
 

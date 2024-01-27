@@ -1,12 +1,16 @@
-import { makeStyles, shorthands } from '@fluentui/react-components';
+import { makeStyles, shorthands, tokens } from '@fluentui/react-components';
 
 export const useStyles = makeStyles({
-  root: {},
+  root: {
+    width: '100%',
+  },
   travelLabel: { width: '320px' },
   travelSpinner: {
     maxWidth: '50px',
   },
-  row: {
-    ...shorthands.margin(0, 0, '8px', 0),
+  row: {},
+  label: {
+    color: tokens.colorNeutralForeground1,
+    ...shorthands.margin('8px', 0),
   },
 });

@@ -8,6 +8,9 @@ import {
 import { RouterProvider } from 'react-router-dom';
 import { router } from './routes';
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 const myNewTheme: BrandVariants = {
   10: '#050202',
   20: '#231212',
