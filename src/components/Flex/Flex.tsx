@@ -27,8 +27,8 @@ export const Flex = (props: FlexProps) => {
         alignItems: align,
         flexWrap: wrap,
         gap,
-        ...others.style,
       }}
+      {...others}
     >
       {others.children}
     </div>

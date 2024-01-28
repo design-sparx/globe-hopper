@@ -3,6 +3,7 @@ import { makeStyles, shorthands, tokens } from '@fluentui/react-components';
 export const useStyles = makeStyles({
   main: {
     ...shorthands.gap('36px'),
+    ...shorthands.margin('16px', '0'),
     display: 'flex',
     flexDirection: 'column',
     flexWrap: 'wrap',

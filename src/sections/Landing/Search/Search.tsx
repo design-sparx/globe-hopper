@@ -30,8 +30,8 @@ export const SearchSection = ({ ...others }: SearchSectionProps) => {
     </div>
   ));
 
-  const Stays = memo(() => (
-    <div role="tabpanel" aria-labelledby="Stays">
+  const Rentals = memo(() => (
+    <div role="tabpanel" aria-labelledby="Rentals">
       <StaySearchForm />
     </div>
   ));
@@ -52,8 +52,8 @@ export const SearchSection = ({ ...others }: SearchSectionProps) => {
         <Tab id="Flight" icon={<PlaneIcon />} value="flight">
           Flight
         </Tab>
-        <Tab id="Stays" icon={<HotelIcon />} value="stays">
-          Stays
+        <Tab id="Rentals" icon={<HotelIcon />} value="stays">
+          Rentals
         </Tab>
         <Tab id="CarRentals" icon={<CarIcon />} value="car-rentals">
           Car rentals
@@ -61,7 +61,7 @@ export const SearchSection = ({ ...others }: SearchSectionProps) => {
       </TabList>
       <div className={classes.panels}>
         {selectedValue === 'flight' && <Flight />}
-        {selectedValue === 'stays' && <Stays />}
+        {selectedValue === 'stays' && <Rentals />}
         {selectedValue === 'car-rentals' && <CarRentals />}
       </div>
     </div>
