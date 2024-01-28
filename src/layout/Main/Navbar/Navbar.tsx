@@ -19,7 +19,7 @@ import {
 } from '@fluentui/react-components';
 import { Container } from 'react-grid-system';
 import { UserButton, Logo } from '@/components';
-import { PATH_FLIGHTS, PATH_STAYS } from '@/constants';
+import { PATH_CAR_RENTALS, PATH_FLIGHTS, PATH_STAYS } from '@/constants';
 import { useStyles } from './Navbar.styles.ts';
 
 const LINKS = [
@@ -35,7 +35,7 @@ const LINKS = [
   },
   {
     title: 'car rental',
-    link: 'car-rentals',
+    link: PATH_CAR_RENTALS.root,
     icon: <CarIcon />,
   },
 ];
