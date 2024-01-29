@@ -30,6 +30,8 @@ import {
   SearchIcon,
   Users2Icon,
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { PATH_FLIGHTS } from '@/constants';
 
 type SelectTravellersFormProps = {
   onClose: () => void;
@@ -86,6 +88,7 @@ export const FlightSearchForm = ({ ...others }: FlightSearchFormProps) => {
   ]);
   const [travellersCount, setTravellersCount] = useState<number | null>(1);
   const [travellersPopoverOpen, setTravellersPopoverOpen] = useState(false);
+  const navigate = useNavigate();
 
   const onFlightTypeChange: SelectProps['onChange'] = (_event, data) => {
     setFlightType(data.value);
@@ -130,6 +133,7 @@ export const FlightSearchForm = ({ ...others }: FlightSearchFormProps) => {
   const submit = (e: FormEvent) => {
     e.preventDefault();
     console.log(flightFormFields);
+    navigate(PATH_FLIGHTS.listing);
   };
 
   const onTravellersCountChange: InputProps['onChange'] = (_ev, data: any) => {

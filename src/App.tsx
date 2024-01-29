@@ -31,7 +31,7 @@ const myNewTheme: BrandVariants = {
 };
 
 const myTheme = {
-  fontFamilyBase: 'Nunito Sans, sans-serif',
+  // fontFamilyBase: 'Nunito Sans, sans-serif',
 };
 
 const lightTheme: Theme = {

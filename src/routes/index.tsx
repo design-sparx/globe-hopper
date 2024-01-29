@@ -3,11 +3,11 @@ import {
   CarRentalBookingPage,
   ErrorPage,
   FlightBookingPage,
+  FlightsListingPage,
   StaysBookingPage,
   TravelPage,
 } from '@/pages';
 import { MainLayout } from '../layout';
-import { PATH_CAR_RENTALS, PATH_FLIGHTS, PATH_STAYS } from '@/constants';
 
 export const router = createBrowserRouter([
   {
@@ -22,19 +22,22 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: PATH_FLIGHTS.root,
+    path: 'flights',
     element: <MainLayout />,
     errorElement: <ErrorPage />,
-    children: [{ path: '', element: <FlightBookingPage /> }],
+    children: [
+      { path: '', element: <FlightBookingPage /> },
+      { path: 'listing', element: <FlightsListingPage /> },
+    ],
   },
   {
-    path: PATH_STAYS.root,
+    path: 'stays',
     element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [{ path: '', element: <StaysBookingPage /> }],
   },
   {
-    path: PATH_CAR_RENTALS.root,
+    path: 'car-rentals',
     element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [{ path: '', element: <CarRentalBookingPage /> }],
