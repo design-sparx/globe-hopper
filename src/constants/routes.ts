@@ -1,6 +1,6 @@
-function path(root: string, sublink: string) {
+const path = (root: string, sublink: string) => {
   return `${root}${sublink}`;
-}
+};
 
 const ROOTS_FLIGHTS = '/flights';
 const ROOT_STAYS = '/stays';
@@ -8,6 +8,7 @@ const ROOT_CAR_RENTALS = '/car-rentals';
 
 export const PATH_FLIGHTS = {
   root: ROOTS_FLIGHTS,
+  listing: path(ROOTS_FLIGHTS, '/listing'),
 };
 
 export const PATH_STAYS = {
